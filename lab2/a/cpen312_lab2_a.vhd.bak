@@ -1,0 +1,83 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+
+
+--===================================================
+--============ Define Input Signals =================
+--===================================================
+
+signal a 		: std_logic_vector(7 downto 0);
+signal b 		: std_logic_vector(7 downto 0);
+signal toggle_a : std_logic;
+signal toggle_b : std_logic;
+signal sub  	: std_logic;
+signal res  	: std_logic_vector(7 downto 0);
+signal carry 	: std_logic;
+
+
+
+
+--===================================================
+--=============== Define Components =================
+--===================================================
+
+component latch_8bit is
+port(
+	enable 		: in std_logic;
+	data		: in std_logic_vector(7 downto 0);
+	q			: out std_logic_vector(7 downto 0)
+);
+end component;
+
+--============ 8-bit adder or subtractor ============
+component add_or_sub is
+port(
+	a			: in std_logic_vector(7 downto 0);
+	b			: in std_logic_vector(7 downto 0);
+	sub			: in std_logic;
+	res			: out std_logic_vector(7 downto 0)
+	carry		: out std_logic
+);
+end component;
+
+
+--============ BCD to 7 segment decoder ============
+component BCD_to_7seg is
+port(
+	BCD			: in std_logic_vector(3 downto 0);
+	seg			: out std_logic_vector(6 downto 0)
+);
+end component;
+
+
+
+
+
+
+--===================================================
+--========== Instantiate components =================
+--===================================================
+
+begin
+
+	latch_a : latch_8bit port map(
+		enable		=> toggle_a,
+		data		=> a,
+		q			=> a
+	);
+
+	latch_b : latch_8bit port map(
+		enable		=> toggle_b,
+		data		=> b,
+		q			=> b
+	);
+
+	math_op : add_or_sub port map(
+		a			=> latch_a.q,
+		b			=> latch_b.q,
+		sub			=> sub,
+		res			=> res,
+		carry		=> carry
+	);

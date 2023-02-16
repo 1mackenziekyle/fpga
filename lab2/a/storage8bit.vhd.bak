@@ -1,0 +1,30 @@
+--infer 4-bit wide latch
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_vector_arith.all;
+
+
+
+entity storage8bit is
+	port(
+		data_in 		: in STD_LOGIC_VECTOR(7 downto 0);
+		data_out		: out STD_LOGIC_VECTOR(7 downto 0);
+		enable 		: in STD_LOGIC
+	);
+end storage8bit;
+
+
+
+	
+	
+architecture a of storage is
+
+begin
+	latch :
+	process (enable, data_in)
+		BEGIN
+		if enable = ‘1’ then
+			data_out <= data_in;
+		end if;
+end process latch;
+end architecture a;

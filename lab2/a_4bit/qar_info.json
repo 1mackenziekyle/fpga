@@ -1,0 +1,7 @@
+{
+	"common_dir" : "C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/",
+	"acds_version" : "Version 16.1.0",
+	"platform" : "windows",
+	"os" : "Windows 10",
+	"qpf" : "cpen312_lab2_a.qpf"
+}

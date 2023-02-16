@@ -1,0 +1,101 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+
+
+
+--===================================================
+--=============== Top-Level Entity ==================
+--===================================================
+entity bcd_2dig_addsub is
+    port(
+        a,b      			: in   std_logic_vector(7 downto 0);
+        sub      			: in   std_logic; -- 1 to subtract
+        sum_l   			: out  std_logic_vector(3 downto 0); 
+		sum_r   			: out  std_logic_vector(3 downto 0);
+        overflow	 		: out  std_logic  
+    );
+end bcd_2dig_addsub;
+
+architecture a of bcd_addsub is
+
+
+
+	--===================================================
+	--============ Define Input Signals =================
+	--===================================================
+	signal a_r, a_l, b_r, b_l : std_logic_vector(3 downto 0); -- Break inputs into 4-bit chunks
+	signal carry_l : std_logic; --  carries
+
+
+
+
+
+
+
+
+
+	--===================================================
+	--============== Component Interfaces ===============
+	--===================================================
+
+	--============= Interface for 4-bit adder/subtractor ===========
+	component bcd_addsub is
+		port(
+			a,b      			: in   std_logic_vector(7 downto 0);
+			sub      			: in   std_logic; -- 1 to subtract
+			carry_in 			: in   std_logic;
+			sum      			: out  std_logic_vector(7 downto 0); 
+			carry    			: out  std_logic  
+		);
+	end component;
+
+
+
+begin
+
+
+
+
+
+	--===================================================
+	--=================== Set signals ===================
+	--===================================================
+
+
+	a_l <= a(7 downto 4);
+	a_r <= a(3 downto 0);
+	b_l <= b(7 downto 4);
+	b_r <= b(3 downto 0);
+
+
+
+
+
+
+	--===================================================
+	--========== Instantiate components =================
+	--===================================================
+
+	-- Sum least significant digit
+	addsub_l : bcd_addsub port map(
+		a          => a_l,
+		b          => b_l,
+		sub        => sub,
+		carry_in   => '0',
+		sum        => sum_l,
+		carry      => carry_l
+	)
+
+	-- Sum most significant digit
+	addsub_r : bcd_addsub port map(
+		a          => a_r,
+		b          => b_r,
+		sub        => sub,
+		carry_in   => carry_l,
+		sum        => sum_r,
+		carry      => overflow
+	);
+
+end a;

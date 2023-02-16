@@ -1,0 +1,35 @@
+Quartus Prime Archive log --	C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/cpen312_lab2_a_tmp_archive.qarlog
+
+Archive:	C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/cpen312_lab2_a_tmp_archive.qar
+Date:		Tue Feb 14 21:44:32 2023
+Quartus Prime		16.1.0 Build 196 10/24/2016 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/BCDto7Seg.vhd
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/Waveform.vwf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/bcd_addsub.vhd
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/cpen312_lab2_a.qpf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/cpen312_lab2_a.qsf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/cpen312_lab2_a.vhd
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/latch_8bit.vhd
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain1.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain11.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain12.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain16.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain19.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain2.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain7.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/output_files/Chain9.cdf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/test.vwf
+C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/vec_to_nibs.vhd
+c:/intelfpga_lite/16.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 18 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Tue Feb 14 21:44:33 2023
+Source archive file:	C:/intelFPGA_lite/16.1/projects/cpen312_lab2_a/cpen312_lab2_a_tmp_archive.qar
+Archive was extracted into	C:/intelFPGA_lite/16.1/projects/cpen312_lab2_b/
+		 - successfully.

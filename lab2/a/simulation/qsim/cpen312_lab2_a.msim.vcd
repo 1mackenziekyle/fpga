@@ -1,0 +1,328 @@
+$comment
+	File created using the following command:
+		vcd file cpen312_lab2_a.msim.vcd -direction
+$end
+$date
+	Wed Feb 15 00:14:41 2023
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module cpen312_lab2_a_vhd_vec_tst $end
+$var wire 1 ! a [3] $end
+$var wire 1 " a [2] $end
+$var wire 1 # a [1] $end
+$var wire 1 $ a [0] $end
+$var wire 1 % b [3] $end
+$var wire 1 & b [2] $end
+$var wire 1 ' b [1] $end
+$var wire 1 ( b [0] $end
+$var wire 1 ) carry $end
+$var wire 1 * carry_in $end
+$var wire 1 + res [3] $end
+$var wire 1 , res [2] $end
+$var wire 1 - res [1] $end
+$var wire 1 . res [0] $end
+$var wire 1 / sub $end
+$var wire 1 0 toggle_a $end
+$var wire 1 1 toggle_b $end
+
+$scope module i1 $end
+$var wire 1 2 gnd $end
+$var wire 1 3 vcc $end
+$var wire 1 4 unknown $end
+$var wire 1 5 devoe $end
+$var wire 1 6 devclrn $end
+$var wire 1 7 devpor $end
+$var wire 1 8 ww_devoe $end
+$var wire 1 9 ww_devclrn $end
+$var wire 1 : ww_devpor $end
+$var wire 1 ; ww_a [3] $end
+$var wire 1 < ww_a [2] $end
+$var wire 1 = ww_a [1] $end
+$var wire 1 > ww_a [0] $end
+$var wire 1 ? ww_b [3] $end
+$var wire 1 @ ww_b [2] $end
+$var wire 1 A ww_b [1] $end
+$var wire 1 B ww_b [0] $end
+$var wire 1 C ww_toggle_a $end
+$var wire 1 D ww_toggle_b $end
+$var wire 1 E ww_sub $end
+$var wire 1 F ww_carry_in $end
+$var wire 1 G ww_res [3] $end
+$var wire 1 H ww_res [2] $end
+$var wire 1 I ww_res [1] $end
+$var wire 1 J ww_res [0] $end
+$var wire 1 K ww_carry $end
+$var wire 1 L \~QUARTUS_CREATED_GND~I_combout\ $end
+$var wire 1 M \sub~input_o\ $end
+$var wire 1 N \b[0]~input_o\ $end
+$var wire 1 O \toggle_b~input_o\ $end
+$var wire 1 P \b[3]~input_o\ $end
+$var wire 1 Q \b[2]~input_o\ $end
+$var wire 1 R \b[1]~input_o\ $end
+$var wire 1 S \math_op|Mux3~0_combout\ $end
+$var wire 1 T \toggle_a~input_o\ $end
+$var wire 1 U \a[0]~input_o\ $end
+$var wire 1 V \carry_in~input_o\ $end
+$var wire 1 W \math_op|Add0~22_cout\ $end
+$var wire 1 X \math_op|Add0~1_sumout\ $end
+$var wire 1 Y \a[1]~input_o\ $end
+$var wire 1 Z \math_op|Add0~2\ $end
+$var wire 1 [ \math_op|Add0~5_sumout\ $end
+$var wire 1 \ \a[2]~input_o\ $end
+$var wire 1 ] \math_op|Add0~6\ $end
+$var wire 1 ^ \math_op|Add0~9_sumout\ $end
+$var wire 1 _ \a[3]~input_o\ $end
+$var wire 1 ` \math_op|Mux0~0_combout\ $end
+$var wire 1 a \math_op|Add0~10\ $end
+$var wire 1 b \math_op|Add0~14\ $end
+$var wire 1 c \math_op|Add0~17_sumout\ $end
+$var wire 1 d \math_op|Add0~13_sumout\ $end
+$var wire 1 e \math_op|sum[1]~0_combout\ $end
+$var wire 1 f \math_op|sum[2]~1_combout\ $end
+$var wire 1 g \math_op|sum[3]~2_combout\ $end
+$var wire 1 h \math_op|LessThan0~0_combout\ $end
+$var wire 1 i \latch_b|q\ [3] $end
+$var wire 1 j \latch_b|q\ [2] $end
+$var wire 1 k \latch_b|q\ [1] $end
+$var wire 1 l \latch_b|q\ [0] $end
+$var wire 1 m \latch_a|q\ [3] $end
+$var wire 1 n \latch_a|q\ [2] $end
+$var wire 1 o \latch_a|q\ [1] $end
+$var wire 1 p \latch_a|q\ [0] $end
+$var wire 1 q \math_op|ALT_INV_Add0~5_sumout\ $end
+$var wire 1 r \math_op|ALT_INV_Add0~9_sumout\ $end
+$var wire 1 s \math_op|ALT_INV_Add0~13_sumout\ $end
+$var wire 1 t \math_op|ALT_INV_Add0~17_sumout\ $end
+$var wire 1 u \math_op|ALT_INV_Mux3~0_combout\ $end
+$var wire 1 v \math_op|ALT_INV_Mux0~0_combout\ $end
+$var wire 1 w \latch_b|ALT_INV_q\ [3] $end
+$var wire 1 x \latch_b|ALT_INV_q\ [2] $end
+$var wire 1 y \latch_b|ALT_INV_q\ [1] $end
+$var wire 1 z \latch_b|ALT_INV_q\ [0] $end
+$var wire 1 { \latch_a|ALT_INV_q\ [3] $end
+$var wire 1 | \latch_a|ALT_INV_q\ [2] $end
+$var wire 1 } \latch_a|ALT_INV_q\ [1] $end
+$var wire 1 ~ \latch_a|ALT_INV_q\ [0] $end
+$var wire 1 !! \ALT_INV_sub~input_o\ $end
+$var wire 1 "! \ALT_INV_b[0]~input_o\ $end
+$var wire 1 #! \ALT_INV_toggle_b~input_o\ $end
+$var wire 1 $! \ALT_INV_b[1]~input_o\ $end
+$var wire 1 %! \ALT_INV_b[2]~input_o\ $end
+$var wire 1 &! \ALT_INV_b[3]~input_o\ $end
+$var wire 1 '! \ALT_INV_a[0]~input_o\ $end
+$var wire 1 (! \ALT_INV_toggle_a~input_o\ $end
+$var wire 1 )! \ALT_INV_carry_in~input_o\ $end
+$var wire 1 *! \ALT_INV_a[1]~input_o\ $end
+$var wire 1 +! \ALT_INV_a[2]~input_o\ $end
+$var wire 1 ,! \ALT_INV_a[3]~input_o\ $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x)
+0*
+1/
+00
+01
+02
+13
+x4
+15
+16
+17
+18
+19
+1:
+0C
+0D
+1E
+0F
+xK
+xL
+1M
+0N
+0O
+1P
+0Q
+0R
+xS
+0T
+0U
+0V
+0W
+xX
+1Y
+xZ
+x[
+1\
+x]
+x^
+0_
+x`
+xa
+xb
+xc
+xd
+xe
+xf
+xg
+xh
+xq
+xr
+xs
+xt
+xu
+xv
+0!!
+1"!
+1#!
+1$!
+1%!
+0&!
+1'!
+1(!
+1)!
+0*!
+0+!
+1,!
+0!
+1"
+1#
+0$
+1%
+0&
+0'
+0(
+0;
+1<
+1=
+0>
+1?
+0@
+0A
+0B
+xG
+xH
+xI
+xJ
+xi
+xj
+xk
+xl
+xm
+xn
+xo
+xp
+xw
+xx
+xy
+xz
+x{
+x|
+x}
+x~
+x+
+x,
+x-
+x.
+$end
+#160000
+10
+11
+1C
+1D
+1O
+1T
+0(!
+0#!
+0l
+1i
+0j
+0k
+0p
+1o
+1n
+0m
+1{
+0|
+0}
+1~
+1y
+1x
+0w
+1z
+0S
+0`
+0Z
+1v
+1u
+1[
+0]
+1X
+0b
+0q
+1^
+0a
+0c
+0r
+0d
+1t
+1f
+1s
+1J
+0g
+1e
+0h
+1.
+1H
+0G
+1,
+0K
+1I
+0+
+0)
+1-
+#180000
+00
+01
+0C
+0D
+0O
+0T
+1(!
+1#!
+#520000
+10
+11
+1C
+1D
+1O
+1T
+0(!
+0#!
+#540000
+00
+01
+0C
+0D
+0O
+0T
+1(!
+1#!
+#960000
+0"
+0#
+0=
+0<
+0\
+0Y
+1*!
+1+!
+#1000000

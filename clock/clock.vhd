@@ -99,6 +99,17 @@ architecture Behavioral of clock is
             resetFlag   : out std_logic
         );
     end component;
+	 
+	 component counter_2dig is 
+		port(
+		  clk : in std_logic;
+        reset_in : in std_logic;
+		  maxval   : in integer;
+        ones_display : out std_logic_vector(0 to 6);
+		  tens_display : out std_logic_vector(0 to 6);
+        reset_flag : out std_logic
+		);
+	 end component;
 
     component display is
         port
@@ -159,38 +170,48 @@ architecture Behavioral of clock is
             onehz_clk_flag  => onehz_clk
         );
 		  
-		  ctr_sec_lsd : counter port map(
-				clk			    => onehz_clk,
-				reset_in 		 => reset,
-				maxval			 => 9,
-				val_display     => second_lsd,
-				reset_flag      => sec_lsd_rst
-			);
-			
-			ctr_sec_msd : counter port map(
-				clk			    => sec_lsd_rst,
-				reset_in 		 => reset,
-				maxval			 => 5,
-				val_display     => second_msd,
-				reset_flag      => sec_msd_rst
-			);
-			
-			ctr_min_lsd : counter port map(
-				clk			    => sec_msd_rst,
-				reset_in 		 => reset,
-				maxval			 => 9,
-				val_display     => minute_lsd,
-				reset_flag      => min_lsd_rst
-			);
-			
-			ctr_min_msd : counter port map(
-				clk			    => min_lsd_rst,
-				reset_in 		 => reset,
-				maxval			 => 5,
-				val_display     => minute_msd,
-				reset_flag      => min_msd_rst
-			);
+		  ctr_sec : counter_2dig port map(
+			clk			    => onehz_clk,
+			reset_in 		 => reset,
+			maxval			 => 59,
+			ones_display     => second_lsd,
+			tens_display    => second_msd,
+			reset_flag      => sec_lsd_rst
+		  );
+		  
+		  
+--		  ctr_sec_lsd : counter port map(
+--				clk			    => onehz_clk,
+--				reset_in 		 => reset,
+--				maxval			 => 9,
+--				val_display     => second_lsd,
+--				reset_flag      => sec_lsd_rst
+--			);
 --			
+--			ctr_sec_msd : counter port map(
+--				clk			    => sec_lsd_rst,
+--				reset_in 		 => reset,
+--				maxval			 => 5,
+--				val_display     => second_msd,
+--				reset_flag      => sec_msd_rst
+--			);
+			
+--			ctr_min_lsd : counter port map(
+--				clk			    => sec_msd_rst,
+--				reset_in 		 => reset,
+--				maxval			 => 9,
+--				val_display     => minute_lsd,
+--				reset_flag      => min_lsd_rst
+--			);
+--			
+--			ctr_min_msd : counter port map(
+--				clk			    => min_lsd_rst,
+--				reset_in 		 => reset,
+--				maxval			 => 5,
+--				val_display     => minute_msd,
+--				reset_flag      => min_msd_rst
+--			);
+----			
 --			ctr_hr_lsd : counter port map(
 --				clk			    => min_msd_rst,
 --				reset_in 		 => reset,

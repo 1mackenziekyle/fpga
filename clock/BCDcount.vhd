@@ -5,13 +5,13 @@ USE IEEE.STD_LOGIC_UNSIGNED.all;
 
 ENTITY BCDCOUNT IS
 	port(
-	KEY0, CLK_FLAG	:IN 	STD_LOGIC;
-	MSD, LSD :OUT STD_LOGIC_VECTOR (0 to 6);
-	RESET_FLG: OUT STD_LOGIC
+	KEY0, CLK_IN	:IN 	STD_LOGIC;
+	MSD, LSD :OUT STD_LOGIC_VECTOR (0 to 6) 
 	);
 END BCDCOUNT;
 
 ARCHITECTURE a of BCDCOUNT is
+	SIGNAL Internal_Count:	STD_LOGIC_VECTOR(28 downto 0);
 	SIGNAL HighDigit, LowDigit: STD_LOGIC_VECTOR(3 downto 0);
 	SIGNAL MSD_7SEG, LSD_7SEG: STD_LOGIC_VECTOR(0 to 6);
 BEGIN
@@ -19,12 +19,13 @@ BEGIN
 	LSD<=LSD_7SEG;
 	MSD<=MSD_7SEG;
 
-	PROCESS(ClkFlag, KEY0)
+
+	PROCESS(CLK_IN, KEY0)
 	BEGIN
 		if(KEY0='0') then -- reset
 			LowDigit<="0000";
 			HighDigit<="0000";
-		elsif(CLK_IN)'event and CLK_IN ='1') then
+		elsif(CLK_IN'event and CLK_IN='1') then
 			if (LowDigit=9) then
 				LowDigit<="0000";
 				if (HighDigit=5) then

@@ -34,12 +34,9 @@ entity clock is
         am_pm               : out std_logic := '0';
 		  
 		  -- reset flags
-		  s_lsd_rst_flg       : out std_logic := '0';
-		  s_msd_rst_flg       : out std_logic := '0';
-		  m_lsd_rst_flg       : out std_logic := '0';
-		  m_msd_rst_flg       : out std_logic := '0';
-		  h_lsd_rst_flg       : out std_logic := '0';
-		  h_msd_rst_flg       : out std_logic := '0'
+		  s_rst_disp       : out std_logic := '0';
+		  m_rst_disp       : out std_logic := '0';
+		  h_rst_disp       : out std_logic := '0'
 		  
     );
 end clock;
@@ -63,44 +60,15 @@ architecture Behavioral of clock is
     signal minutes_alarm        : std_logic_vector(5 downto 0) := "000000";
     signal seconds_alarm        : std_logic_vector(5 downto 0) := "000000";
 	 
-	 signal sec_lsd_rst			  : std_logic := '0';
-	 signal sec_msd_rst			  : std_logic := '0';
-	 signal min_lsd_rst			  : std_logic := '0';
-	 signal min_msd_rst			  : std_logic := '0';
-	 signal hr_lsd_rst			  : std_logic := '0';
-	 signal hr_msd_rst			  : std_logic := '0';
-	 
-	 
+	 signal sec_rst			  : std_logic := '0';
+	 signal min_rst			  : std_logic := '0';
+	 signal hr_rst			  		: std_logic := '0';
 
-	 
-
-    --===================================================
+	 --===================================================
     --============ Component Interfaces =================
     --===================================================
-
-    component counter is
-        port (
-            clk : in std_logic;
-            reset_in : in std_logic;
-				maxval   : in integer;
-            val_display : out std_logic_vector(6 downto 0);
-            reset_flag : out std_logic
-        );
-    end component;
-
-    component counter_one_digit is
-        -- Increments value by 1 on each rising edge of enable signal
-        port
-        (
-            input       : in std_logic_vector(5 downto 0);
-            clkFlag      : in std_logic; -- increment
-            maxval      : in std_logic_vector(5 downto 0);
-            output      : out std_logic_vector(5 downto 0);
-            resetFlag   : out std_logic
-        );
-    end component;
 	 
-	 component counter_2dig is 
+	 component counter is 
 		port(
 		  clk : in std_logic;
         reset_in : in std_logic;
@@ -108,6 +76,14 @@ architecture Behavioral of clock is
         ones_display : out std_logic_vector(0 to 6);
 		  tens_display : out std_logic_vector(0 to 6);
         reset_flag : out std_logic
+		);
+	 end component;
+	 
+	 component flipflop is
+		port(
+		  reset	: in std_logic;
+		  enable : in std_logic;
+        q 		: out std_logic
 		);
 	 end component;
 
@@ -151,16 +127,10 @@ architecture Behavioral of clock is
 	     --========== Set Outputs from Signals ===============
 	     --===================================================
 		  onehz_clk_out <= onehz_clk;
-		  
-		  s_lsd_rst_flg <= sec_lsd_rst;
-		  s_msd_rst_flg <= sec_msd_rst;
-		  m_lsd_rst_flg <= min_lsd_rst;
-		  m_msd_rst_flg <= min_msd_rst;
-		  h_lsd_rst_flg <= hr_lsd_rst;
-		  h_msd_rst_flg <= hr_msd_rst;
-		  
-		  
-		  
+		  s_rst_disp <= sec_rst;
+		  m_rst_disp <= min_rst;
+		  h_rst_disp <= hr_rst;
+
 		  
 		  --===================================================
         --============ Component Instantiations =============
@@ -170,65 +140,38 @@ architecture Behavioral of clock is
             onehz_clk_flag  => onehz_clk
         );
 		  
-		  ctr_sec : counter_2dig port map(
+		  ctr_sec : counter port map(
 			clk			    => onehz_clk,
 			reset_in 		 => reset,
 			maxval			 => 59,
 			ones_display     => second_lsd,
 			tens_display    => second_msd,
-			reset_flag      => sec_lsd_rst
+			reset_flag      => sec_rst
 		  );
 		  
+		  ctr_min : counter port map(
+			clk			    => sec_rst,
+			reset_in 		 => reset,
+			maxval			 => 59,
+			ones_display     => minute_lsd,
+			tens_display    => minute_msd,
+			reset_flag      => min_rst
+		  );
 		  
---		  ctr_sec_lsd : counter port map(
---				clk			    => onehz_clk,
---				reset_in 		 => reset,
---				maxval			 => 9,
---				val_display     => second_lsd,
---				reset_flag      => sec_lsd_rst
---			);
---			
---			ctr_sec_msd : counter port map(
---				clk			    => sec_lsd_rst,
---				reset_in 		 => reset,
---				maxval			 => 5,
---				val_display     => second_msd,
---				reset_flag      => sec_msd_rst
---			);
-			
---			ctr_min_lsd : counter port map(
---				clk			    => sec_msd_rst,
---				reset_in 		 => reset,
---				maxval			 => 9,
---				val_display     => minute_lsd,
---				reset_flag      => min_lsd_rst
---			);
---			
---			ctr_min_msd : counter port map(
---				clk			    => min_lsd_rst,
---				reset_in 		 => reset,
---				maxval			 => 5,
---				val_display     => minute_msd,
---				reset_flag      => min_msd_rst
---			);
-----			
---			ctr_hr_lsd : counter port map(
---				clk			    => min_msd_rst,
---				reset_in 		 => reset,
---				maxval			 => 9,
---				val_display     => hour_lsd,
---				reset_flag      => hr_lsd_rst
---			);
---			
---			ctr_hr_msd : counter port map(
---				clk			    => hr_lsd_rst,
---				reset_in 		 => reset,
---				maxval			 => 5,
---				val_display     => hour_msd,
---				reset_flag      => hr_msd_rst
---			);
-		
-
+		  ctr_hr : counter port map(
+			clk			    => min_rst,
+			reset_in 		 => reset,
+			maxval			 => 11,
+			ones_display     => hour_lsd,
+			tens_display    => hour_msd,
+			reset_flag      => hr_rst
+		  );
+		  
+		  am_pm_flipflop : flipflop port map(
+			reset				=> reset,
+			enable		   => hr_rst,
+			q					=> am_pm
+		  );
 		
 end Behavioral;
     

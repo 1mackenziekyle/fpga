@@ -21,7 +21,7 @@ architecture a of clk_gen is
 			if (sys_clk'event and sys_clk='1') then
 				count <=count+1;
 			end if;
-			if (count > 2500000) then
+			if (count > 250000) then
 				tmp <= NOT tmp;
 				count <= 1;
 			end if;

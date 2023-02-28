@@ -15,7 +15,7 @@ architecture a of flipflop is
 		signal d			: std_logic := '0';
 	
 		begin
-		process (enable, reset) is
+		process (d, enable, reset) is
 		begin
 			if (enable'event and enable='1') then
 				d <= not d;

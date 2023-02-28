@@ -7,6 +7,7 @@ entity counter is
         clk : in std_logic;
         reset_in : in std_logic;
 		  maxval   : in integer;
+		  minval	  : in integer;
         ones_display : out std_logic_vector(0 to 6);
 		  tens_display : out std_logic_vector(0 to 6);
         reset_flag : out std_logic
@@ -14,7 +15,7 @@ entity counter is
 end counter;
 
 architecture a of counter is
-    signal val : integer := 0;
+    signal val : integer := minval;
 	 signal ones : integer := 0;
 	 signal tens : integer := 0;
     signal ones_7seg : std_logic_vector(0 to 6);
@@ -31,8 +32,10 @@ begin
             val <= 0;
         elsif(clk'event and clk='1') then
             if (val >maxval-1) then
-                val <= 0;
+                val <= minval;
                 reset_flag <= '1';
+				elsif (val < minval) then
+					val <= minval;
             else
                 val <= val + 1;
                 reset_flag <= '0';

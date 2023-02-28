@@ -29,7 +29,7 @@ begin
     process(clk, val, reset_in)
     begin
         if (reset_in = '0') then
-            val <= 0;
+            val <= minval;
         elsif(clk'event and clk='1') then
             if (val >maxval-1) then
                 val <= minval;
